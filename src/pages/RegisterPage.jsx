@@ -92,7 +92,7 @@ function RegisterPage() {
         </button>
 
         <p className="login__register">
-          Already have an account? <a href="/login">Login</a>
+          ya tienes una cuenta? <a href="/login">Login</a>
         </p>
       </form>
     </div>

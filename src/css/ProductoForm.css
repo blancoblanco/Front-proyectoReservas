@@ -1,0 +1,78 @@
+/* Contenedor que centra el formulario SIN tapar tu fondo */
+.producto-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;          /* ocupa casi toda la pantalla */
+  width: 100%;
+  padding: 20px;             /* evita que se pegue a los bordes */
+  background: none !important; /* conserva tu fondo azul */
+}
+
+/* Formulario */
+.producto-form {
+  max-width: 600px;
+  width: 100%;
+  padding: 28px;
+  border: 1px solid #abb2b9;
+  border-radius: 10px;
+  background-color: #ffffff15;   /* transparente para que se vea tu fondo azul */
+  backdrop-filter: blur(3px);    /* efecto elegante opcional */
+}
+
+/* Resto de tus estilos */
+.producto-form * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.producto-form .content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.producto-form .input-box {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  margin-bottom: 15px;
+}
+
+.producto-form label {
+  color: white;       /* etiqueta blanca sobre fondo azul */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.producto-form input,
+.producto-form select {
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.producto-form .button-container {
+  margin-top: 20px;
+}
+
+.producto-form .button-container button {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-image: linear-gradient(to right, #ddd9d9, #b3b3b3);
+}
+
+@media (max-width: 600px) {
+  .producto-form {
+    max-width: 350px;
+  }
+  .producto-form .input-box {
+    width: 100%;
+  }
+}

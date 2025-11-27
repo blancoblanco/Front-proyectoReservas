@@ -1,19 +1,18 @@
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-
-
+import "../css/register.css";
 
 function LoginPage() {
+  const { register, handleSubmit } = useForm();
 
-    const { register, handleSubmit } = useForm();
-   const {signin}= useAuth()
-    const onSubmit = handleSubmit((data)=>{
-        signin(data)
-    })
+  const { signin } = useAuth();
+  const onSubmit = handleSubmit((data) => {
+    signin(data);
+  });
 
   return (
-    <div>
-          <form onSubmit={onSubmit} className="login__form">
+    <div className="login">
+      <form onSubmit={onSubmit} className="login__form">
         <h1 className="login__title">login</h1>
 
         {/* correo */}
@@ -66,15 +65,15 @@ function LoginPage() {
         </div>
 
         <button className="login__button" type="submit">
-          Registrarse
+          Iniciar Sesión
         </button>
 
         <p className="login__register">
-          Already have an account? <a href="/login">Login</a>
+          no tienes una cuenta? <a href="/register">registrate</a>
         </p>
       </form>
     </div>
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;
