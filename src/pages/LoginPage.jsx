@@ -1,13 +1,29 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../css/register.css";
 
 function LoginPage() {
   const { register, handleSubmit } = useForm();
+  const { signin, user } = useAuth(); // asumimos que 'user' contiene info si está logeado
+  const navigate = useNavigate();
 
-  const { signin } = useAuth();
-  const onSubmit = handleSubmit((data) => {
-    signin(data);
+  // Redireccionar si ya está logeado
+  useEffect(() => {
+    if (user) {
+      navigate("/dashbord");
+    }
+  }, [user, navigate]);
+
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      await signin(data);
+      navigate("/dashbord"); // redireccionar después de iniciar sesión
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      alert("Correo o contraseña incorrecta");
+    }
   });
 
   return (
@@ -25,9 +41,7 @@ function LoginPage() {
               placeholder=" "
               {...register("correo", { required: true })}
             />
-            <label className="login__label" htmlFor="">
-              Correo
-            </label>
+            <label className="login__label">Correo</label>
           </div>
         </div>
 
@@ -41,9 +55,7 @@ function LoginPage() {
               placeholder=" "
               {...register("contrasena", { required: true })}
             />
-            <label className="login__label" htmlFor="">
-              Contraseña
-            </label>
+            <label className="login__label">Contraseña</label>
           </div>
         </div>
 

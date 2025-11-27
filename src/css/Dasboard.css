@@ -1,0 +1,149 @@
+/* ==== PALETA AJUSTADA AL FONDO AZUL OSCURO ==== */
+:root {
+  --clr-primary: #8aa4ff;          /* azul suave para resaltar */
+  --clr-danger: #ff6b81;           /* rojo suave */
+  --clr-success: #5ff3c1;          /* verde suave */
+  --clr-white: #ffffff;
+  --clr-info-dark: #b5c3d6;        /* gris claro */
+  --clr-info-light: #e6e9f1;
+  --clr-dark: #dbe1ee;             /* gris muy claro */
+  --clr-warning: #ffe86b;          /* amarillo suave */
+  --clr-dark-variant: #a8b4c8;     /* gris medio */
+  --clr-light: rgba(255, 255, 255, 0.1);
+
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
+
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
+  --box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ==== LAYOUT GENERAL ==== */
+.container {
+  display: grid;
+  width: 96%;
+  gap: 2rem;
+  grid-template-columns: 16rem auto;
+  margin: 4rem auto 0 auto; /* TODO MÁS ABAJO */
+}
+
+/* ENLACES */
+a {
+  color: var(--clr-dark);
+  text-decoration: none;
+}
+
+h3 {
+  font-size: 0.9rem;
+}
+
+.danger {
+  color: var(--clr-danger);
+}
+
+.warning {
+  color: var(--clr-warning);
+}
+
+/* ==== SIDEBAR ==== */
+aside {
+  height: 100vh;
+}
+
+aside .sidebar {
+  background-color: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  position: relative;
+  padding-top: 1rem;
+}
+
+/* items */
+aside .sidebar a {
+  display: flex;
+  margin-left: 1.5rem;
+  gap: 1rem;
+  align-items: center;
+  height: 3.2rem;
+  color: var(--clr-info-dark);
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.6rem;
+}
+
+aside .sidebar a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: var(--clr-primary);
+}
+
+aside .sidebar a:hover span {
+  margin-left: 0.4rem;
+  transition: 0.3s ease;
+}
+
+aside .sidebar a span {
+  font-size: 1.6rem;
+}
+
+/* activo */
+aside .sidebar a.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: var(--clr-primary);
+  margin-left: 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid var(--clr-primary);
+}
+
+/* logout */
+aside .sidebar a:last-child {
+  position: absolute;
+  bottom: 1.5rem;
+  width: 95%;
+}
+
+/* ==== MAIN ==== */
+main {
+  margin-top: 2rem; /* contenido más abajo */
+  width: auto;
+}
+
+main h2 {
+  color: var(--clr-white);
+  margin-bottom: 1.5rem;
+}
+
+/* ==== TABLA ==== */
+main .recent_order {
+  margin-top: 2rem;
+}
+
+main .recent_order table {
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  width: 100%;
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  text-align: center;
+  box-shadow: var(--box-shadow);
+  color: var(--clr-white);
+  transition: all 0.3s ease;
+}
+
+main table tbody tr {
+  height: 3.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--clr-dark-variant);
+}
+
+main table tbody td {
+  height: 3.8rem;
+}
+
+main table tbody tr:last-child td {
+  border: none;
+}

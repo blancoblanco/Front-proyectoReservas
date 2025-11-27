@@ -10,13 +10,16 @@ function ProductosPage() {
   }, []);
 
   return (
-    <div className="productos-container">
+    <div className="container-items">
       {productos.map((producto) => (
-        <div key={producto._id} className="cart-box">
-          <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5721/5721500_sd.jpg" />
-          <div className="cart-content">
-            <h3>{producto.nombre}</h3>
-            <p>Precio: {producto.precio}</p>
+        <div key={producto._id} className="item">
+          <figure>
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5721/5721500_sd.jpg" alt="producto" />
+          </figure>
+          <div className="info-product">
+            <h2>{producto.nombre}</h2>
+            <p className="price">${producto.precio}</p>
+            <button className="btn-add-cart">Agregar al carrito</button>
           </div>
         </div>
       ))}

@@ -5,7 +5,9 @@ import {
   updateProductoRequest,
   deleteProductoRequest,
   getProductoRequest,
-} from "../api/producto";
+} from "../api/producto.js";
+
+import { getCategoriasRequest } from "../api/categoria"; // <-- IMPORTAR
 
 const ProductoContext = createContext();
 
@@ -18,6 +20,7 @@ export const useProducto = () => {
 
 export function ProductoProvider({ children }) {
   const [productos, setProductos] = useState([]);
+  const [categorias, setCategorias] = useState([]); // <-- AÑADIDO
 
   // Obtener todos los productos
   const getProductos = async () => {
@@ -29,6 +32,12 @@ export function ProductoProvider({ children }) {
   const getProducto = async (id) => {
     const res = await getProductoRequest(id);
     return res.data;
+  };
+
+  // Obtener categorías
+  const getCategorias = async () => {
+    const res = await getCategoriasRequest();
+    setCategorias(res.data);
   };
 
   const createProducto = async (producto) => {
@@ -47,6 +56,8 @@ export function ProductoProvider({ children }) {
     <ProductoContext.Provider
       value={{
         productos,
+        categorias,      // <-- AÑADIDO
+        getCategorias,    // <-- AÑADIDO
         getProductos,
         getProducto,
         createProducto,

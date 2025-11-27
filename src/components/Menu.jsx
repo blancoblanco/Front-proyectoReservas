@@ -6,10 +6,9 @@ function Menu() {
     <>
       <header className='menu-header'>
         <Link to="/" className="menu-logo">Tienda</Link>
-        <nav className='menu-navbar'>
-          <Link to="/usuarios">Usuarios</Link>
-          <Link to="/productos">Productos</Link>
-          <Link to="/categorias">Categorias</Link>
+        <nav className='menu-navbar'>      
+          <Link to="/productos">Productos</Link>  
+          <Link to="/dashbord">Menu</Link>
           <Link to="/login">Login</Link>
         </nav>
       </header>

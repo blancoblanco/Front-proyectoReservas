@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from "react";
-import { loginRequest, registerRequest, verifyTokenRequest } from "../api/auth";
+import { createContext, useContext, useState, useEffect } from "react";
+import { loginRequest, registerRequest, verifyTokenRequest, logoutRequest } from "../api/auth";
 import Cookies from "js-cookie";
-import { useEffect } from "react";
 
 export const AuthContext = createContext();
 
@@ -15,54 +14,69 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const signUp = async (user) => {
+  // Registro
+  const signUp = async (userData) => {
     try {
-      const res = await registerRequest(user);
-      console.log(res.data);
+      const res = await registerRequest(userData);
       setUser(res.data);
       setIsAuthenticated(true);
     } catch (error) {
-      console.error(error);
+      console.error("Error en registro:", error);
     }
   };
-  const signin = async (user) => {
+
+  // Login
+  const signin = async (userData) => {
     try {
-      const res = await loginRequest(user);
-      console.log(res);
-      setIsAuthenticated(true);
+      const res = await loginRequest(userData);
       setUser(res.data);
+      setIsAuthenticated(true);
     } catch (error) {
-      console.error(error);
+      console.error("Error en login:", error);
     }
   };
+
+  // Logout
+  const signout = async () => {
+    try {
+      await logoutRequest(); // Llamada al backend
+      setUser(null);
+      setIsAuthenticated(false);
+      Cookies.remove("token"); // si estás usando cookies para el token
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
+  };
+
+  // Verificar token al iniciar
   useEffect(() => {
     async function checkLogin() {
       const cookies = Cookies.get();
 
       if (!cookies.token) {
-        setIsAuthenticated(false);
-         setLoading(false);
-        return setUser(null);
-      }
-      try {
-        const res = await verifyTokenRequest(cookies.token);
-
-        if (!res.data) {
-          setIsAuthenticated(false);
-          setLoading(false);
-          
-          return
-        }
-        setIsAuthenticated(true);
-        setUser(res.data);
-        setLoading(false);
-      } catch (error) {
-        setIsAuthenticated(false);
         setUser(null);
+        setIsAuthenticated(false);
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const res = await verifyTokenRequest();
+        if (res.data) {
+          setUser(res.data);
+          setIsAuthenticated(true);
+        } else {
+          setUser(null);
+          setIsAuthenticated(false);
+        }
+      } catch (error) {
+        console.error("Error al verificar token:", error);
+        setUser(null);
+        setIsAuthenticated(false);
+      } finally {
         setLoading(false);
       }
     }
@@ -71,7 +85,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signUp, user, isAuthenticated, signin, loading }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, loading, signUp, signin, signout }}
+    >
       {children}
     </AuthContext.Provider>
   );
