@@ -4,6 +4,8 @@ import TableProducts from "../components/TableProducts";
 import TableCategorias from "../components/TableCategorias";
 import { useAuth } from "../context/AuthContext";
 import "../css/Dasboard.css";
+import TableCarrito from "../components/TableCarrito";
+
 
 function Dashbord() {
   const { user, signout } = useAuth(); // <-- agregamos signout
@@ -44,7 +46,7 @@ function Dashbord() {
             <span className="material-symbols-outlined">category</span>
             <h3>Categorías</h3>
           </a>
-          <a href="">
+          <a href="/carrito">
             <span className="material-symbols-outlined">shopping_cart</span>
             <h3>Carrito</h3>
           </a>
@@ -81,6 +83,7 @@ function Dashbord() {
         {/* Renderizado condicional según la ruta */}
         {location.pathname === "/dashbord" && <TableProducts />}
         {location.pathname === "/categorias" && <TableCategorias />}
+        {location.pathname === "/carrito" && <TableCarrito />}
       </main>
     </div>
   );
