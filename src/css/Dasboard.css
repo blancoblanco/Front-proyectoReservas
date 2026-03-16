@@ -147,3 +147,35 @@ main table tbody td {
 main table tbody tr:last-child td {
   border: none;
 }
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 4rem 0 0 0;
+    padding: 0 10px;
+  }
+
+  aside .sidebar {
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 1rem;
+  }
+
+  aside .sidebar a {
+    height: 2.5rem;
+    width: calc(50% - 0.5rem);
+    margin-bottom: 0.5rem;
+  }
+
+  main .recent_order table {
+    overflow-x: auto;
+    display: block;
+  }
+
+  main table {
+    min-width: 600px;
+  }
+}

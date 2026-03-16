@@ -19,11 +19,6 @@ function Dashbord() {
     }
   }, [user]);
 
-  const handleLogout = async () => {
-    await signout();
-    navigate("/login"); // redirige al login
-  };
-
   return (
     <div className="container">
       <aside>

@@ -47,6 +47,7 @@ function ProductosFormPage() {
       }
     }
     cargarProducto();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id, setValue]);
 
   const onSubmit = handleSubmit(async (data) => {

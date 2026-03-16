@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import PropTypes from "prop-types";
 import {
   getProductosRequest,
   createProductoRequest,
@@ -7,7 +8,7 @@ import {
   getProductoRequest,
 } from "../api/producto.js";
 
-import { getCategoriasRequest } from "../api/categoria"; // <-- IMPORTAR
+import { getCategoriasRequest } from "../api/categoria";
 
 const ProductoContext = createContext();
 
@@ -69,3 +70,7 @@ export function ProductoProvider({ children }) {
     </ProductoContext.Provider>
   );
 }
+
+ProductoProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

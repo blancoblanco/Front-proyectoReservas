@@ -12,6 +12,7 @@ function ProductosPage() {
   useEffect(() => {
     getProductos();
     getCarrito(); // ⬅ Cargar carrito al entrar
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleAdd = async (productoId) => {

@@ -21,11 +21,6 @@ button {
   font-family: var(--body-font);
 }
 
-body {
-  color: var(--white-color);
-  background-color: #0a1a2f;
-}
-
 input,
 button {
   border: none;

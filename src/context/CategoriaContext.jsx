@@ -1,11 +1,12 @@
 import { createContext, useContext, useState } from "react";
+import PropTypes from "prop-types";
 import {
   getCategoriasRequest,
   createCategoriaRequest,
   updateCategoriaRequest,
   deleteCategoriaRequest,
   getCategoriaRequest,
-} from "../api/categoria.js"; // Asegúrate de tener estos métodos en tu API
+} from "../api/categoria.js";
 
 const CategoriaContext = createContext();
 
@@ -61,3 +62,7 @@ export function CategoriaProvider({ children }) {
     </CategoriaContext.Provider>
   );
 }
+
+CategoriaProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

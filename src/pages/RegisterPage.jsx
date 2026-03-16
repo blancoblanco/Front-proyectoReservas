@@ -11,6 +11,7 @@ function RegisterPage() {
 
   useEffect(() => {
     if (isAuthenticated) navigate("/productos");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
 
   const onSubmit = handleSubmit(async (values) => {

@@ -1,7 +1,3 @@
-img {
-  max-width: 100%;
-}
-
 /* CONTENEDOR DE PRODUCTOS CENTRADO */
 .container-items {
   display: grid;
@@ -10,6 +6,10 @@ img {
   max-width: 1200px;      /* limita el ancho total del grid */
   margin: 100px auto 50px auto;     /* centra horizontalmente y un poco arriba */
   padding: 20px;
+}
+
+.container-items img {
+  max-width: 100%;
 }
 
 /* TARJETA DE PRODUCTO */

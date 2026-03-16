@@ -7,6 +7,7 @@ function TableProducts() {
 
   useEffect(() => {
     getProductos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = async (id, nombre) => {

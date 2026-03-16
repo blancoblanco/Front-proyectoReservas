@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "../api/axios";
 
 const CarritoContext = createContext();
@@ -7,27 +8,27 @@ export const useCarrito = () => useContext(CarritoContext);
 export const CarritoProvider = ({ children }) => {
   const [carrito, setCarrito] = useState(null);          // carrito del usuario
   const [carritos, setCarritos] = useState([]);          // carritos del admin
-  const [loading, setLoading] = useState(true);
+  const [loading] = useState(true);
 
   // 🔹 OBTENER EL CARRITO DEL USUARIO
   const getCarrito = async () => {
     try {
-      const res = await axios.get("/carrito/mi-carrito");
-      setCarrito(res.data.carrito);
+      const res = await axios.get("/carritos");
+      if (res.data && res.data.length > 0) {
+        setCarrito(res.data[0]);
+      } else {
+        const nuevo = await axios.post("/carrito");
+        setCarrito(nuevo.data);
+      }
     } catch (error) {
       console.error("Error obteniendo carrito:", error);
-
-      if (error.response?.status === 404) {
-        const nuevo = await axios.post("/carrito/crear");
-        setCarrito(nuevo.data.carrito);
-      }
     }
   };
 
   // 🔹 OBTENER TODOS LOS CARRITOS (ADMIN)
   const getCarritos = async () => {
     try {
-      const res = await axios.get("/carrito");
+      const res = await axios.get("/carritos");
       setCarritos(res.data);
     } catch (error) {
       console.error("Error obteniendo TODOS los carritos:", error);
@@ -45,12 +46,13 @@ export const CarritoProvider = ({ children }) => {
   };
 
   // 🔹 AGREGAR PRODUCTO (actualiza carrito INMEDIATAMENTE)
-  const addProductoAlCarrito = async (productoId) => {
+  const addProductoAlCarrito = async (productoId, cantidad = 1) => {
     try {
-      const res = await axios.post(`/carrito/agregar/${productoId}`);
-      setCarrito(res.data.carrito);
+      const res = await axios.post("/carrito/agregar", { productoId, cantidad });
+      setCarrito(res.data);
     } catch (error) {
       console.error("Error agregando producto:", error);
+      throw error;
     }
   };
 
@@ -73,4 +75,8 @@ export const CarritoProvider = ({ children }) => {
       {children}
     </CarritoContext.Provider>
   );
+};
+
+CarritoProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

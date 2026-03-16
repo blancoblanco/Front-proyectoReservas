@@ -6,7 +6,7 @@
   min-height: 90vh;          /* ocupa casi toda la pantalla */
   width: 100%;
   padding: 20px;             /* evita que se pegue a los bordes */
-  background: none !important; /* conserva tu fondo azul */
+  background: transparent;   /* conserva tu fondo azul */
 }
 
 /* Formulario */
