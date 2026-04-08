@@ -88,3 +88,12 @@
     grid-template-columns: 1fr; /* 1 producto por fila */
   }
 }
+.carrito-icon {
+  position: relative;
+}
+
+.carrito-icon span {
+  position: absolute;
+  top: -12px;
+  right: 380px;
+}

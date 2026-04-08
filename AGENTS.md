@@ -9,7 +9,7 @@ This file provides guidelines for agentic coding agents working in this reposito
 - **Package Manager**: npm
 - **Key Dependencies**: axios, react-router-dom, react-hook-form, js-cookie
 
-## 1. Build / Lint / Test Commands
+## 1. Build / Lint / Test Commands  
 
 ```bash
 npm run dev          # Start Vite dev server (http://localhost:5173)
